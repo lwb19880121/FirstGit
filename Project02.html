@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{margin: 0;padding:0;}
+        body{
+            background: #ccc;
+            padding:50px;
+        }
+        .wrap{width: 300px;
+            margin: 0 auto;
+        }
+        #box1{
+            background: #111111;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            color: #ffffff;
+        }
+        #box2{
+            background: #111;
+            text-align: center;
+            font-size: 20px;
+            margin-top: 20px;
+            display: none;
+            padding: 10px 0;
+        }
+        p{margin: 10px;}
+        #box2 a{
+            color: #00cc66;
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var box1 = document.getElementById('box1');
+            var box2 = document.getElementById('box2');
+            var timer = null;
+
+            //第一次实现效果
+            /*
+            box1.onmouseover = function(){
+                box2.style.display ="block";
+                clearTimeout(timer);
+            }
+            box1.onmouseout = function(){
+                timer = setTimeout(function(){
+                    box2.style.display = "none";
+                },300);
+            }
+            box2.onmouseover = function(){
+                box2.style.display = "block";
+                clearTimeout(timer);
+            }
+            box2.onmouseout = function(){
+                timer = setTimeout(function(){
+                    box2.style.display = "none";
+                },300)
+            }
+            */
+            //第二次优化代码
+            /*
+            function showdrop(){
+                box2.style.display ="block";
+                clearTimeout(timer);
+            }
+            function hidedrop(){
+                timer = setTimeout(function(){
+                    box2.style.display = "none";
+                },300)
+            }
+            box1.onmouseover = showdrop;
+            box2.onmouseover = showdrop;
+            box1.onmouseout = hidedrop;
+            box2.onmouseout = hidedrop;
+            */
+            //第三次优化
+
+            box1.onmouseover = box2.onmouseover = function (){
+                box2.style.display ="block";
+                clearTimeout(timer);
+            };
+            box1.onmouseout = box2.onmouseout = function(){
+                timer = setTimeout(function(){
+                    box2.style.display = "none";
+                },300)
+            }
+            
+        }
+    </script>
+</head>
+<body>
+
+        <div class="wrap">
+            <div id="box1">我有下拉列表呦</div>
+            <div id="box2">
+                <p><a href="">我是下列表1</a></p>
+                <p><a href="">我是下列表2</a></p>
+                <p><a href="">我是下列表3</a></p>
+                <p><a href="">我是下列表4</a></p>
+            </div>
+        </div>
+
+</body>
+</html>
