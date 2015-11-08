@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{margin:0;padding:0;}
+        body{
+            padding: 50px;
+        }
+        #nav{
+            background: #111111;
+            width: 600px;
+            height: 40px;
+            margin: 0 auto;
+        }
+        .nav-ul{
+            clear: both;
+        }
+        .nav-ul li{
+            list-style: none;
+            float: left;
+            width: 200px;
+            text-align: center;
+            line-height: 40px;
+            color: #ffffff;
+            position: relative;
+        }
+        .ul-list{
+            position: absolute;
+            left: 0;
+            display: none;
+        }
+        .ul-list li{
+            background: #00cc66;
+            color: #ffffff;
+        }
+        .ul-list li:hover{
+            background: #111;
+        }
+        .clearfix{
+            clear:both;
+        }
+        .ul-list2{
+            position: absolute;
+            left: 200px;
+            top: 0px;
+            color: #cccccc;;
+            display: none;
+        }
+        .ul-list2 li{
+            background: red;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            var nav = document.getElementById("nav");
+            var oli = nav.getElementsByTagName("li");
+            for(var i=0;i<oli.length;i++){
+
+                if(oli[i].className == "nav-li"){
+                    oli[i].onmouseover = function(){
+                        var ullist = this.getElementsByTagName("ul")[0];
+                        ullist.style.display ="block";
+                    }
+                    oli[i].onmouseout = function(){
+                        var ullist = this.getElementsByTagName("ul")[0];
+                        ullist.style.display ="none";
+                    }
+                }else if(oli[i].className == "list-li"){
+                    oli[i].onmouseover = function () {
+                        var ullist2 = this.getElementsByTagName("ul")[0];
+                        ullist2.style.display ="block";
+
+                    }
+                    oli[i].onmouseout = function () {
+                        var ullist2 = this.getElementsByTagName("ul")[0];
+                        ullist2.style.display ="none";
+
+                    }
+
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="nav">
+        <ul class="nav-ul">
+            <li class="nav-li">
+                <h2>HOME</h2>
+                <ul class="ul-list">
+                    <li class="list-li">1级菜单
+                        <ul class="ul-list2">
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                        </ul>
+                    </li>
+                    <li class="list-li">1级菜单
+                        <ul class="ul-list2">
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                        </ul>
+                    </li>
+                    <li class="list-li">1级菜单
+                        <ul class="ul-list2">
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                        </ul>
+                    </li>
+                    <li class="list-li">1级菜单
+                        <ul class="ul-list2">
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-li">
+                <h2>ABOUT</h2>
+                <ul class="ul-list">
+                    <li class="list-li">1级菜单
+                        <ul class="ul-list2">
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                        </ul>
+                    </li>
+                    <li class="list-li">1级菜单
+                        <ul class="ul-list2">
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                        </ul>
+                    </li>
+                    <li class="list-li">1级菜单
+                        <ul class="ul-list2">
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                        </ul>
+                    </li>
+                    <li class="list-li">1级菜单
+                        <ul class="ul-list2">
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-li">
+                <h2>Contack</h2>
+                <ul class="ul-list">
+                    <li class="list-li">1级菜单
+                        <ul class="ul-list2">
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                        </ul>
+                    </li>
+                     <li class="list-li">1级菜单
+                        <ul class="ul-list2">
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                        </ul>
+                    </li>
+                     <li class="list-li">1级菜单
+                        <ul class="ul-list2">
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                        </ul>
+                    </li>
+                     <li class="list-li">1级菜单
+                        <ul class="ul-list2">
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                            <li>2级菜单</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <div class="clearfix"></div>
+        </ul>
+    </div>
+</body>
+</html>
