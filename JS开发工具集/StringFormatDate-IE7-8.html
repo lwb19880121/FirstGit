@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+			
+
+
+		<script>
+				/*
+					IE7/8下，能把字符串格式数据转化为时间格式;
+					在这里，我们可以看到，它给了一个把字符串格式的时间转化为时间格式的函数。
+				*/
+				/**Parses string formatted as YYYY-MM-DD to a Date object.
+				  * If the supplied string does not match the format, an
+				  * invalid Date (value NaN) is returned.
+				  * @param {string} dateStringInRange format YYYY-MM-DD, with year in
+				  * range of 0000-9999, inclusive.
+				  * @return {Date} Date object representing the string.
+				  */
+
+				function parseISO8601(dateStringInRange) {
+				   var isoExp = /^\s*(\d{4})-(\d\d)-(\d\d)\s*$/,
+					   date = new Date(NaN), month,
+					   parts = isoExp.exec(dateStringInRange);
+
+				   if(parts) {
+					 month = +parts[2];
+					 date.setFullYear(parts[1], month - 1, parts[3]);
+					 if(month != date.getMonth() + 1) {
+					   date.setTime(NaN);
+					 }
+				   }
+				   return date;
+				 }
+		
+		</script>
+ </body>
+</html>
