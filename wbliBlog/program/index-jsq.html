@@ -1,0 +1,198 @@
+<!DOCTYPE html> 
+<head> 
+<meta  charset="utf-8"/> 
+<title>计算器</title> 
+<style type="text/css"> 
+	body{font-size:12px;font-family:Arial,Georgia,"Times New Roman",Times,serif;color:#555;text-align:center;background-color:#e2e2e2;}
+	h6{margin:0;font-size:12px;}
+	#calculator{width:94%;height:auto;overflow:hidden;margin:10px auto;border:#fff 1px solid;padding-bottom:10px;background-color:#f2f2f2;}
+	#calculator div{clear:both;}
+	#calculator ul{padding:0;margin:5px 14px;border:#fff 1px solid;height:auto;overflow:hidden}
+	#calculator li{list-style:none;float:left;width:14.43%;margin:0.5%;display:inline;line-height:32px;font-size:32px;background-color:#eaeaea;padding:2.28%;}
+	#calculator li.tool{background-color:#738FD8;}
+	#calculator li.D06A15{background-color:#D06A15;}
+	#calculator li:hover{background-color:#f9f9f9;cursor:pointer;}
+	#calculator li:active{background-color:#fc0;cursor:pointer;}
+	#calculator li.tool:active{background-color:#d8e8ff;cursor:pointer;}
+	#calcu-head{text-align:left;padding:10px 15px 5px;}
+	span.imyeah{float:right;color:#ccc;}
+	span.imyeah a{color:#ccc;}
+	.screen{width:97%;height:42px;line-height:42px;padding:4px;border:#e6e6e6 1px solid;border-bottom:#f2f2f2 1px solid;border-right:#f2f2f2 1px solid;margin:10px auto;direction:ltr;text-align:right;padding-right:20px;font-size:3em;color:#999;}
+	#calcu-foot{text-align:left;padding:10px 15px 5px;height:auto;overflow:hidden;}
+	span#note{float:left;width:210px;height:auto;overflow:hidden;color:red;}
+	span.welcome{clear:both;color:#999;}
+	span.welcome a{float:right;color:#999;}
+</style> 
+<script language="javascript"> 
+//此处插入上面的js代码 
+</script> 
+</head> 
+<body> 
+<div id="calculator"> 
+	<div id="calcu-head"><span class="imyeah">© <a href="#" target="_blank">Mr.Li</a></span><h6>计算器</h6></div> 
+	<form name="calculator" action="" method="get"> 
+	<div id="calcu-screen"> 
+		<!--配置显示窗口，使用onfocus="this.blur();"避免键盘输入--> 
+		<input type="text" name="numScreen" id="result" class="screen" value="0" onfocus="this.blur();" disabled="disabled" /> 
+	</div> 
+	<div id="calcu-btn"> 
+		<ul> <!--配置按钮--> 
+			<li onclick="command(7)">7</li> 
+			<li onclick="command(8)">8</li> 
+			<li onclick="command(9)">9</li> 
+			<li class="tool" onclick="del()">←</li> 
+			<li class="tool" onclick="clearzero()">C</li> 
+			<li onclick="command(4)">4</li> 
+			<li onclick="command(5)">5</li> 
+			<li onclick="command(6)">6</li> 
+			<li class="tool" onclick="op(3)">×</li> 
+			<li class="tool" onclick="op(4)">÷</li> 
+			<li onclick="command(1)">1</li> 
+			<li onclick="command(2)">2</li> 
+			<li onclick="command(3)">3</li> 
+			<li class="tool" onclick="op(1)">+</li> 
+			<li class="tool" onclick="op(2)">-</li> 
+			<li onclick="command(0)">0</li> 
+			<li onclick="dzero()">00</li> 
+			<li onclick="dot()">.</li> 
+			<li class="tool" onclick="op(5)">%</li> 
+			<li class="tool D06A15" onclick="equal()">=</li> 
+		</ul> 
+	</div> 
+	<div id="audioBox"></div>
+	<div id="calcu-foot"> 
+		<span id="note"></span> 
+		<div id="audioBox">
+			<embed id="devUnknown"  src="void/0.wav"   width="0"   height="0"   loop="false"   autostart="false"></embed> 
+		</div>
+		<span class="welcome">欢迎使用Mr.Li计算器！
+			<a href="#" target="_blank">反馈</a>
+		</span> 
+	</div> 
+</form> 
+</div> 
+
+
+<script type="text/javascript">
+		/*
+			开发计算器
+			1.解决点击数字拼接连续的问题0-9绑定一个相同时间commond(num)
+			2.点击操作符(运算符)
+			3.在点击数字
+			4.求出结果，点击等于号
+
+		*/
+
+			var resultDom = document.getElementById("result");
+
+			//opFlag 记录操作符
+			var opFlag = 0;
+			//记住操作符之前的值
+			var oldNum = 0;
+			//小数点锁
+			var dotFlag = true;
+			function command(num){
+
+				//先获取文本框的值
+				var str = resultDom.value;
+				str = (str == "0"?"":str);
+				/*
+				if(str == "0"){str = ""}
+				*/
+				resultDom.value = str + num;
+				play(num);
+			}
+			//点击操作符(运算符)
+			function op(op){
+				opFlag = op;//记录操作符
+				oldNum = resultDom.value;//记住操作符之前的数字
+				resultDom.value = "";
+				dotFlag = true;
+				play("g");
+			}
+
+			function equal(){
+
+				//拿到最新文本框的值，也就是用户最后输入操作符后的值
+				var num = resultDom.value
+				var result = 0;
+				if(opFlag==1){
+					result = oldNum*1 + num*1;					
+				}else if(opFlag==2){
+					result = oldNum*1 - num*1;
+				}else if(opFlag==3){
+					result = oldNum*1 * num*1;
+				}else if(opFlag==4){
+					result = oldNum*1 / num*1;
+				}else if(opFlag==5){
+					result = oldNum*1 % num*1;
+				}
+
+				resultDom.value = result;
+				var r = resultDom.value;
+				dotFlag = (r.indexOf(".")==-1?true:false);
+				/*
+					//如果不是小数
+					if(r.indexOf(".")==-1){
+						//把小数点打开
+						dotFlag = true;
+					}else{
+						//否则关闭
+						dotFlag = false;
+					}
+				*/
+				play("r");
+			
+			}
+			//双0
+			function dzero(){
+				var num = resultDom.value;
+				if(num == "0"){
+					return;
+				}
+				resultDom.value += "00";		
+			}
+
+			//小数
+			
+			function dot(){
+				if(dotFlag){
+					var num = resultDom.value;
+					resultDom.value = num + ".";
+					dotFlag = false;//锁住小数点
+				}
+			}
+
+			function clearzero(){
+				resultDom.value = "0";
+				//opFlag 记录操作符
+				var opFlag = 0;
+				//记住操作符之前的值
+				var oldNum = 0;
+				//小数点锁
+				var dotFlag = true;
+				play("x");
+			}
+
+			function del(){
+				var val = resultDom.value;
+				if(!val){
+					return;
+				}
+				var str = val.substring(0,val.length-1);
+				if(str && /\.$/.test(str)){
+					resultDom.value = str.replace(".","")||0;
+					dotFlag = true;
+				}else{
+					resultDom.value = str||0;
+				}
+				play("x");
+			}
+
+			function play(m){
+				document.getElementById("audioBox").innerHTML = "<embed src='void/"+m+".wav' width='0' height='0'/>";
+			
+			}
+</script>
+</body> 
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<!--当前页面的三要素-->
+	<title>3D旋转</title>
+	<meta name="Keywords" content="关键词,关键词">
+	<meta name="description" content="">
+
+	<!--css,js-->
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		body{background:url("../images/3d-bj.jpg");}
+		h1{color:#fff;text-align:center;line-height:70px;}
+		.wrap{width:900px; height:300px;position:absolute; bottom:10px; right:10px;perspective:1000px;}
+		.wrap .box{width:240px; height:240px; float:left;  margin-right:60px; transform-style:preserve-3D;transform-origin:50%;-webkit-animation:slide 3s linear infinite; }
+		.wrap .box ul li{list-style:none;width:230px; height:230px;padding:5px; position:absolute; opacity:0.8; backface-visibility:hidden;background:rgba(255,255,255,0.7);}
+		.wrap .box ul li:nth-child(1){transform:rotateY(0deg) translateZ(70px);}
+		.wrap .box ul li:nth-child(2){transform:rotateY(-120deg)translateZ(70px);}
+		.wrap .box ul li:nth-child(3){transform:rotateY(120deg)translateZ(70px);}
+		@-webkit-keyframes slide{
+			0%{transform:rotateY(0deg);}
+			100%{transform:rotateY(-360deg);}
+		}
+	</style>
+
+	</head>
+<body>
+		<h1>3D旋转请在谷歌浏览器下面查看</h1>
+		<div class="wrap">
+			<div class="box">
+				<ul>
+					<li><img src="../images/3d-1.jpg"/></li>
+					<li><img src="../images/3d-2.jpg"/></li>
+					<li><img src="../images/3d-3.jpg"/></li>
+				</ul>
+			</div>
+			<div class="box">
+				<ul>
+					<li><img src="../images/3d-4.jpg"/></li>
+					<li><img src="../images/3d-5.jpg"/></li>
+					<li><img src="../images/3d-6.jpg"/></li>
+				</ul>			
+			</div>
+			<div class="box">
+				<ul>
+					<li><img src="../images/3d-7.jpg"/></li>
+					<li><img src="../images/3d-8.jpg"/></li>
+					<li><img src="../images/3d-8.jpg"/></li>
+				</ul>			
+			</div>			
+		</div>
+
+
+</body>
+</html>

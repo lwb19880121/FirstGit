@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.container{background:url("../images/lofter-1.jpg")no-repeat center;height:650px;overflow:hidden;}
+			/*登录窗口*/
+			.container .loginbox{width:582px;margin:80px auto;}
+			.container .loginbox .logo{background:url("../images/lofter-btn.png")no-repeat;width:430px;height:130px;margin:50px auto;}
+			.loginbox .l_title ul{background:url("../images/lofter-btn.png")no-repeat 0 -275px;height:56px;}
+			.loginbox .l_title ul .sel{background:url("../images/lofter-btn.png")no-repeat 0 -179px;;height:56px;width:192px;}
+			.loginbox .l_title ul li:hover{background:url("../images/lofter-btn.png")no-repeat 0 -179px;;height:56px;width:192px;}
+			.loginbox .l_con{width:582px;background:#fff;margin-left:1px;}			
+			.loginbox .l_con .c_left{width:344px;height:213px;float:left;}
+			.loginbox .l_con .c_left .l_login{width:300px;margin:30px auto;}
+			.loginbox .l_con .c_left .l_login .inputs{width:300px;height:40px;text-indent:1em;margin-top:-1px;}
+			.loginbox .l_con .c_left .l_login .registered{display:block;background:#85A304;width:300px;height:40px;color:#fff;font-size:16px;text-align:center;line-height:40px;border-radius:4px;margin-top:12px;}
+			.loginbox .l_con .c_left .l_login .registered:hover{background:#AED505;}
+			.loginbox .l_con .c_right{width:238px;height:213px;float:left;position:relative;}
+			.loginbox .l_con .c_right .line{border-left:1px solid #ccc;display:block;height:90px;position:absolute;top:28px;left:10px;}
+			.loginbox .l_con .c_right .word{position:absolute;top:61px;left:4px;z-index: 4;display:block;background:#fff;color:#ccc;}
+			.loginbox .l_con .c_right .other{width:168px;margin:30px auto;}
+			.loginbox .l_con .c_right .other a{display:block;color:#fff;font-size:14px;height:40px;margin-bottom: 11px;text-align:center;line-height:40px;background:url("../images/lofter-btn.png")no-repeat;}
+			.loginbox .l_con .c_right .other span{display:inline-block;margin-left:30px;}
+			.loginbox .l_con .c_right .other .xlwb{background-position:0px -601px;}
+			.loginbox .l_con .c_right .other .xlwb:hover{background-position:-198px -601px;}
+			.loginbox .l_con .c_right .other .qq{background-position:0px -651px;}
+			.loginbox .l_con .c_right .other .qq:hover{background-position:-198px -651px;}
+			.loginbox .l_con .c_right .other .wx{background-position:-213px -1191px;}
+			.loginbox .l_con .c_right .other .wx:hover{background-position: -213px -1251px;}
+
+			/*info区域*/
+			.wrap{height:100%;background:#fff;}
+			.wrap .infobox{width:960px;margin:0 auto;}
+			.wrap .infobox h2{font-size:46px;font-weight:500;text-align:center;padding:80px 0 45px 0;color:#444;}
+			.wrap .infobox h3{font-size:16px;font-weight:normal;text-align:center;line-height:36px;}
+			.wrap .infobox .cnt{text-align:center;margin-top:70px;}
+			.wrap .infobox .cnt .blog{margin-top:80px;}
+			.wrap .infobox .cnt .blog ul li{width:400px;float:left;margin: 0px 0px 40px 52px;}
+			.wrap .infobox .cnt .blog ul li i{background:url("../images/icon.png")no-repeat;display:block;width:90px;height:90px;margin:0 auto;}
+			.wrap .infobox .cnt .blog ul li .icon2{background-position:-115px 0px;}
+			.wrap .infobox .cnt .blog ul li .icon3{background-position: -234px 0px;}
+			.wrap .infobox .cnt .blog ul li .icon4{background-position:-347px 0px;}
+			.wrap .infobox .cnt .blog ul li .icon5{background-position:-455px 0px;}
+			.wrap .infobox .cnt .blog ul li .icon6{background-position:-565px 0px;}
+			.wrap .infobox .cnt .blog ul li .icon7{background-position:-675px 0px;}
+			.wrap .infobox .cnt .blog ul li .icon8{background-position:-785px 0px;}
+
+			.wrap .infobox .cnt .blog ul li h3{font-size:28px;margin: 26px 0px 15px 0px;}
+			.wrap .infobox .cnt .blog ul li p{text-align:left;font-size:14px;line-height:28px;}
+
+			.wrap_p1{background:#F7F7F7;}
+
+			.floot{background:#fff;text-align:center;padding-bottom: 80px;}
+			.floot h2{font-size:46px;font-weight:normal;padding:70px 0;letter-spacing:2px;}
+			
+			.floot .bar .pic{font-size:16px;color:#999;margin-bottom: 20px;}
+			.floot .bar .pic i{background:url("../images/lofter-btn.png")no-repeat -475px -825px;width:22px;height:22px;display:inline-block;margin: 0px 6px -5px 0px;}
+			.floot .bar .btn{width:850px;margin:0 auto;}
+			.floot .bar .btn a{background:url("../images/lofter-btn.png")no-repeat;display:block;width:200px;height:50px;float:left;margin-left: 10px;line-height:50px;color:#fff;font-size:16px;text-align:center;}
+			.floot .bar .btn .btn_email{background-position:-1px -880px}
+			.floot .bar .btn .btn_email:hover{background-position:-1px -940px}
+			.floot .bar .btn .btn_wb{background-position:-211px -880px}
+			.floot .bar .btn .btn_wb:hover{background-position:-211px -940px;}
+			.floot .bar .btn .btn_qq{background-position:-421px -880px;}
+			.floot .bar .btn .btn_qq:hover{background-position:-421px -940px;}
+
+			.floot .bar .btn .btn_wx{background-position:0px -1190px;}
+			.floot .bar .btn .btn_wx:hover{background-position:0px -1250px;}
+			
+			.message{background:#F7F7F7;text-align:center;padding:30px 0;letter-spacing:2px;}
+			.clearfix{clear:both;}
+		</style>
+		<link type="text/css" rel="stylesheet" href="../css/common.css"/>
+	</head>
+<body>
+	<div class="container">
+		<!--登录窗口-->
+		<div class="loginbox">
+			<div class="logo"></div>
+			<div class="l_title">
+				<ul>
+					<li class="sel"></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+			<div class="l_con">
+				<div class="c_left">
+					<div class="l_login">
+						<div><input class="inputs" type="text" placeholder="常用邮箱/网易地址" autofocus="autofocus"></div>
+						<div><input class="inputs" type="password" placeholder="设置密码"></div>
+						<a href="#" class="registered">注册</a>
+					</div>
+				</div>
+				<div class="c_right">
+					<span class="line"></span>
+					<span class="word">或</span>
+					<div class="other">
+						<a href="#" class="xlwb"><span>新浪微博注册</span></a>
+						<a href="#" class="qq"><span>腾讯QQ注册</span></a>
+						<a href="#" class="wx"><span>微信注册</span></a>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div><!--end 登录窗口-->
+	</div>
+	<!--区域一-->
+	<div class="wrap">
+		<div class="infobox">
+			<h2>随性的记录方式</h2>
+			<h3>方便地记录照片、文字、音乐、视频，适用于iPhone、iPad和Android移动客户端及PC端，
+				<br />
+				让你随时随地的记录与分享。
+			</h3>
+			<div class="cnt">
+				<img src="../images/lofter-2.jpg"/>
+				<div class="blog">
+					<ul>
+						<li>
+							<i class="icon1"></i>
+							<h3>博客导入导出</h3>
+							<p>方便地从instagram、wordpress博客等平台导入数据到LOFTER。</p>
+						</li>
+						<li>
+							<i class="icon2"></i>
+							<h3>自动同步</h3>
+							<p>方便同步你的内容到新浪微博、QQ空间、500px、facebook、twitter等社交网络，还可以分享到微信、易信聊天和朋友圈。</p>
+						</li>
+						<li>
+							<i class="icon3"></i>
+							<h3>高质量图片</h3>
+							<p>使用无损图片压缩技术，上传图片保留高质量细节，当你手机处于wifi网络，将自动加载全高清图片。</p>
+						</li>
+						<li>
+							<i class="icon4"></i>
+							<h3>独立域名</h3>
+							<p>LOFTER个人主页，可以自定义以LOFTER.com为基础的二级域名，还可以绑定自己的独立域名。</p>
+						</li>
+
+					</ul>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--区域二-->
+	<div class="wrap wrap_p1">
+		<div class="infobox">
+		<h2>发现有共同爱好的人</h2>
+		<h3>LOFTER汇聚了数百万的摄影、胶片玩家，绘画及动漫爱好者，并不断衍生出更多的兴趣圈子，无论是设计、
+			<br />
+			艺术、科技、时尚、旅行、读书、电影评论都有精彩的人与内容不断产出。
+		</h3>
+		<div class="cnt">
+			<img src="../images/lofter-3.jpg" width="960"/>
+			<div class="blog">
+				<ul>
+					<li>
+						<i class="icon5"></i>
+						<h3>推荐算法</h3>
+						<p>方便地从instagram、wordpress博客等平台导入数据到LOFTER。</p>
+					</li>
+					<li>
+						<i class="icon6"></i>
+						<h3>精彩话题</h3>
+						<p>方便同步你的内容到新浪微博、QQ空间、500px、facebook、twitter等社交网络，还可以分享到微信、易信聊天和朋友圈。</p>
+					</li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		</div>
+	</div>
+	<!--区域三-->
+	<div class="wrap">
+		<div class="infobox">
+			<h2>彰显个性的个人主页</h2>
+			<h3>已经拥有234套风格各异的个人主页模板，而且这些模板可以轻松的完成自定义样式及导航，
+				<br />
+				让你的个人主页变得与众不同，提供了10套移动端浏览器适配模板，当使用手机浏览器访问主页时，也如此优雅。
+			</h3>
+			<div class="cnt">
+				<img src="../images/lofter-blog-6.jpg"/>
+			</div>
+		</div>
+	</div>
+	<!--区域四-->
+	<div class="wrap wrap_p1">
+		<div class="infobox">
+			<h2>轻巧的移动LOFTER</h2>
+			<h3>通过iPhone、iPad版及Android版客户端，体验LOFTER的快速、漂亮、有趣，提供多种时下最热的贴纸，
+				<br />
+				让你的相片分享增加乐趣，还可以在移动端查看附近的人。
+			</h3>
+			<div class="cnt">
+				<img src="../images/lofter-mobilelofter.jpg" width="960"/>
+				<div class="blog">
+					<ul>
+						<li>
+							<i class="icon7"></i>
+							<h3>查找附近的同好</h3>
+							<p style="text-align:center;">通过移动端的定位功能，发现附近有趣的人。</p>
+						</li>
+						<li>
+							<i class="icon8"></i>
+							<h3>独有的贴纸</h3>
+							<p>提供丰富、有趣、限量贴纸，参与贴纸类主题话题，让手机摄影更有趣、好玩。</p>
+						</li>
+					</ul>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="floot">
+		<h2>LOFTER - 每个人的理想国</h2>
+		<div class="bar">
+			<div class="pic">
+				<i></i>
+				注册免费冲印20张照片
+			</div>
+			<div class="btn">
+				<a href="#" class="btn_email">邮箱注册</a>
+				<a href="#" class="btn_wb">新浪微博注册</a>
+				<a href="#" class="btn_qq">腾讯QQ注册</a>
+				<a href="#" class="btn_wx">微信注册</a>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<p class="message">		
+			联系我们 | 招贤纳士 | 移动客户端 | 风格模板 | 官方博客 网易公司版权所有　©1997-2015　浙B2-20090185
+	</p>
+
+
+
+</body>
+</html>

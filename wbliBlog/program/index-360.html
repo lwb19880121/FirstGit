@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>360弹幕技术</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{background:url("../images/360.png") no-repeat top center;font-size:12px;font-family:"微软雅黑";color:#666;}
+			/*dm start*/
+			.dm{width:100%;height:100%;position:absolute;top:0;left:0;}
+			.screen{width:100%;height:100%;position:absolute;top:0;left:0;}
+			.screen .mask{width:100%;height:100%;background:#000;position:absolute;top:0;left:0;
+			opacity:0.8;filter:alpha(opaciyt=80);z-index:1;}
+			.screen .s_close{width:38px;height:38px;display:block;background:#ce0000;border:1px solid #fff;text-align:center;line-height:38px;font-size:20px;color:#fff;text-decoration:none;border-radius:19px;position:absolute;top:20px;right:20px;z-index:2;}
+			.screen .s_close:hover{background:red;}
+
+			.send{width:100%;height:76px;position:absolute;bottom:0;left:0;}
+			.send .s_filter{width:100%;height:76px;background:#000;position:absolute;bottom:0;left:0;
+			opacity:0.8;filter:alpha(opaciyt=80);}			
+			.dm .send .s_con{width:100%;height:76px;position:absolute;bottom:0;left:0;z-index:3;text-align:center;line-height:76px;}
+			.dm .send .s_con .s_txt{width:605px;height:38px;border:0;border-radius:3px 0 0 3px;font-size:14px;font-family:"微软雅黑";color:#666;padding-left:10px;}
+			.dm .send .s_con .s_sub{width:100px;height:37px;background:#65c33d;border:1px solid #5bba32;font-size:14px;font-family:"微软雅黑";color:#fff;border-radius:0 3px 3px 0;cursor:pointer;}
+			.dm .send .s_con .s_sub:hover{background:#3eaf0e;border-color:#329209;}
+			.dm .screen .s_show{position:relative;}
+			.dm .screen .s_show div{position:absolute;top:76px;left:0;line-hight:36px;font-size:22px;font-weight:500;z-index:4;}
+
+			/*en dm*/
+		</style>
+		<!--引入潭州css动画类库-->
+		<link type="text/css" rel="stylesheet" href="css/tz.css"></link>
+	</head>
+<body>
+		<a href="#" class="btn">弹幕</a>
+		<!--dm start-->
+		<div class="dm">
+			<!--screen start-->
+			<div class="screen">
+				<a href="#" class="s_close">X</a>
+				<div class="mask"></div>
+				<div class="s_show">
+					<div>大部分人要我学习去看</div>
+					<div>世俗的眼光</div>
+					<div>我认真学习了世俗的眼光，世俗到天亮</div>
+					<div>一部外国电影没听到一句话</div>
+					<div>看完结局才是笑话</div>
+					<div>你看我多乖多聪明多么听话</div>
+				</div>
+			</div>
+			<!--end screen-->
+			<!--send start-->
+			<div class="send">
+				<div class="s_filter"></div>
+				<div class="s_con">
+					<input type="text" class="s_txt" /><input type="button" class="s_sub" id="send_sub"value="发表评论"/>
+				</div>
+				
+			</div>
+			<!--end send-->
+		</div>
+		<!--en dm-->
+
+<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript">
+	
+	$(function(){
+		//调用初始化弹幕函数
+		init_screen();
+		//点击展开和关闭
+		$(".btn,.s_close").click(function(){
+			$(".dm,.s_close").toggle("slow");
+		});
+		//发送信息
+		$("#send_sub").click(function(){
+			var text = $(".s_txt").val();
+			var _label = $("<div class='magictime twisterInUp'>"+text+"</div>");
+			$(".s_show").append(_label);
+			init_screen();
+		});
+
+	
+	//初始化弹幕
+		function init_screen(){
+			var _top = 0;
+		$(".s_show").find("div").show().each(function(){
+			var _left = $(window).width()-$(this).width();//浏览器最大宽度，div的margin-left值；
+			var _height = $(window).height();//浏览器的最大高度；
+
+				_top = _top + 76;
+				if(_top >= _height - 100 ){
+					_top = 0;
+					
+				}
+
+
+				//设定文字的初始化位置
+				$(this).css({left:_left,top:_top,color:getRandomColor()});
+
+				//根据取余，设定不一样的时间
+				var time = 10000;
+				if($(this).index() % 2 == 0 ){
+					time = 20000;
+				}
+			
+				//动起来
+				$(this).animate({left:"-"+_left+"px"},time,function(){
+					
+					$(this).remove();
+				
+				});
+				
+			});
+		
+		}
+
+	});
+
+		//随机获取颜色值
+		function getRandomColor(){
+			return '#' + (function(h){
+			  return new Array(7 - h.length).join("0") + h
+			})((Math.random() * 0x1000000 << 0).toString(16))
+		}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <link type="text/css" rel="stylesheet" href="../css/common.css">
+  <link type="text/css" rel="stylesheet" href="../css/blog.css">
+ <body>
+ 		<!--header start-->	
+ 		<header class="header">
+			<div class="h-con">
+				<div class="h-title fl">
+					<h1>
+						<a href="javascript:void(0)" class="logo" >LEE Blog
+							<span class="motto">As much as anyone's effort</span>
+						</a>
+					</h1>
+				</div>
+				<div class="login fr">
+					<a href="index-login.html">登录</a>
+					<span class="l-line">|</span>
+					<a href="index-register.html">注册</a>
+				</div>
+			</div>
+		</header>
+		<!--end header-->
+		<!--nav start-->
+ 		<nav class="nav">
+			<div class="menu">
+				<ul class="m-ul">
+					<li>
+						<a href="../index.html" class="m-sel">Home</a>
+						<span class="line"><span>
+					</li>
+					<li>
+						<a href="index-myself.html">About</a>
+						<span class="line"><span>
+					</li>
+					<li>
+						<a href="index-html5.html">Html5</a>
+						<span class="line"></span>
+					</li>
+					<li>
+						<a href="index-javascript.html">Javascript</a>
+						<span class="line"></span>
+					</li>
+					<li>
+						<a href="index-css3.html">Css3</a>
+						<span class="line"></span>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!--end nav-->
+		<canvas id="canvas" style="background:#111"></canvas>
+		<!--footer start-->
+ 		<footer class="footer">
+			<div class="copyright">
+				Copyright © Welcome to Mr.Lee Learning Space
+				<p>工业和信息化部 版权所有 苏ICP备15048025号</p>
+			</div>
+		</footer>
+		<!--end footer-->
+				
+		<script>
+			window.onload = function(){
+				var canvas = document.getElementById("canvas");
+				var cnt = canvas.getContext("2d");
+				var w = window.innerWidth;
+				var h = window.innerHeight;
+				canvas.width = w; 
+				canvas.height = h;
+				var num = 200;
+				var snows = [];
+				for(var i=0;i< num;i++){
+					snows.push({
+						 x:Math.random()*w,
+						 y:Math.random()*h,
+						 r:Math.random()*10,
+						 d:Math.random()*num
+					});
+				}
+				function draw(){
+					cnt.clearRect(0,0,w,h);
+					cnt.beginPath();
+					for(var i=0;i<num;i++){
+						var snow = snows[i];
+						cnt.fillStyle = "rgba(255,255,255,0.9)";
+						cnt.moveTo(snow.x,snow.y);
+						cnt.arc(snow.x,snow.y,snow.r,0,2*Math.PI);
+					}
+					cnt.fill();
+					drop();
+				}
+
+				var angle = 0;
+				function drop(){
+					angle +=0.01;
+					for(var i=0;i<num;i++){
+						var p = snows[i];
+						//记住两个公式：Math.sin(弧度)返回是一个0 1 -1 的数字
+						//math.cos(1 0 -1 ) 自由体，
+						p.y +=Math.cos(angle+p.d) + 1 + p.r*0.625;
+						p.x +=Math.sin(angle)*8;
+						if(p.x > w+ 5 || p.x < - 5 || p.y > h){
+							if(i % 4 >0){
+								snows[i] = snows[i] = {x: Math.random()*w, y: -10, r: p.r, d: p.d};
+							}else{
+								//控制方向
+								if(Math.sin(angle) > 0){
+									snows[i] = {x: -5, y: Math.random()*h, r: p.r, d: p.d};
+								}else{
+									snows[i] = {x: w+5, y: Math.random()*h, r: p.r, d: p.d};
+								}
+							} 
+						}
+					}
+				}
+
+				draw();
+				setInterval(draw,100);
+				
+				
+			}
+		</script>
+</body>
+</html>

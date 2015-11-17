@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	*{margin:0;padding:0;}
+	a{text-decoration:none;}
+	body{font-size:14px;font-family:"微软雅黑";color:#666;padding:100px;}
+	.tab{height:36px;
+		background:#666;
+		display:inline-block;
+		border-radius:5px;
+		box-shadow:0 0 1em rgba(0,0,0,0.5);
+		counter-reset:flag;
+		overflow:hidden;
+	}
+	.tab a{
+		display:block;
+		float:left;
+		color:#fff;
+		line-height:36px;
+		padding:0 10px 0 60px;
+		position:relative;
+		background:linear-gradient(#666,#333);
+	}
+	.tab a:before{
+		content:counter(flag);
+		counter-increment:flag;
+		position:absolute;
+		left:30px;
+		width:20px;
+		height:20px;
+		border-radius:10px;
+		background:gray;
+		text-align:center;
+		line-height:20px;
+		top:8px;
+	}
+	.tab a:after{
+		content:"";
+		width:36px;
+		height:36px;
+		position:absolute;
+		right:-18px;
+		top:0;
+		z-index:2;
+		background:#666;
+		background:linear-gradient(135deg,#666,#333);
+		box-shadow: 2px -2px 2px rgba(0, 0, 0, 0.7),3px -3px 2px rgba(187, 171, 171, 0.15);
+		transform:rotate(45deg) scale(0.7);
+		border-radius:0 5px 0 50px;
+	
+	}
+	.tab a:first-child:before{background:green;}
+	.tab a:last-child:before{background:green;}
+	.tab a:nth-of-type(2):before{background:red;}
+	.tab a:nth-of-type(3):before{background:pink;}
+	.tab a:hover{background:green}
+	.tab a:hover:after{background:green}
+  </style>
+ </head>
+ <body>
+  
+
+		<div class="tab">
+			<a href="#">首页</a>
+			<a href="#">java</a>
+			<a href="#">html</a>
+			<a href="#">css</a>
+			<a href="#">javascript</a>
+		</div>
+ </body>
+</html>

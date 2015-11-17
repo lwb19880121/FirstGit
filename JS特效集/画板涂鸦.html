@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <div id="console"></div>	
+  <canvas id="canvas" width="960" height="400"></canvas>
+  
+  <button onclick="exportImg(this)">导出图片</button>
+  线宽:
+  <select id="lineWidth" style="padding:6px;">
+	<option>1</option>
+	<option>2</option>
+	<option>4</option>
+	<option>5</option>
+	<option>8</option>
+	<option>10</option>
+	<option>12</option>
+	<option>16</option>
+  </select>
+  线颜色
+  <select id="lineColor" style="padding:6px;">
+	<option>red</option>
+	<option>yellow</option>
+	<option>blue</option>
+	<option>white</option>
+  </select>
+  <img src="" id="target" width="480" height="200"/>
+  
+
+  </select>
+  <script type="text/javascript">
+	/**
+		技术：画板
+		技术点：html5 -canvas 
+		开始工具：editplus+浏览器 
+		步骤:
+		canvas/svg--flash
+		1:定义个canvas元素
+		2:画线
+		3:导出图片
+	*/
+	//获取画布对象
+	var canvaDom = document.getElementById("canvas");
+	//初始化画板的上下文
+	var context = canvaDom.getContext("2d");
+	//初始化画布的背景色
+	context.fillStyle = "black";
+	//画板的范围
+	//context.fillRect(x,y,width.height);
+	context.fillRect(0,0,960,400);	
+	//添加鼠标事件
+	//a:鼠标按下去的事件
+	canvaDom.addEventListener("mousedown",down,false);
+	//b:鼠标移动事件
+	canvaDom.addEventListener("mousemove",draw,false);
+	//c:鼠标松开事件
+	canvaDom.addEventListener("mouseup",up,false);
+	
+	//锁定开关
+	//event是javascript为每一个事件提供一个顶级类
+	var onoff = false;
+	var oldx = -10;
+	var oldy = -10;
+	var lineWidth = 1;
+	var lineColor = "red";
+	function down(event){
+		lienWidth = document.getElementById("lineWidth").value;
+		lineColor = document.getElementById("lineColor").value;
+		onoff = true;//锁定
+		//获取当前鼠标在画板中点击的x,y轴的坐标
+		oldx = event.clientX-10;
+		oldy = event.clientY-10;
+		document.getElementById("console").innerHTML = "x:="+oldx+";y:="+oldy;
+	}
+
+	//移动
+	function draw(event){
+		if(onoff){//开关
+			var newx = event.clientX-10;
+			var newy = event.clientY-10;
+			//核心---画线
+			context.beginPath();
+			//线的起始点坐标
+			context.moveTo(oldx,oldy);
+			context.lineTo(newx,newy);
+			//线的宽度
+			context.lineWidth = lienWidth;
+			//线的粗细(形状)
+			context.lineCap ="round";
+			//线的颜色
+			context.strokeStyle=getRandomColor();
+			//初始化到画布中
+			context.stroke();
+				
+			oldx = newx;
+			oldy = newy;
+		}
+	}
+	
+
+	function up(){
+		onoff = false;
+	}
+	
+	/**/
+	function getRandomColor() {
+		return '#' + (function(h) {
+			return new Array(7 - h.length).join("0") + h;
+		})((Math.random() * 0x1000000 << 0).toString(16));
+	};
+
+	//导出图片
+	function exportImg(){
+		//初始画板的图片信息
+		var exportImg = canvas.toDataURL("image/png");
+		document.getElementById("target").src = exportImg;
+	}
+  </script>
+ </body>
+</html>

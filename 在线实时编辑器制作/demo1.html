@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+
+	<iframe id="preview" name="preview" width="640" height="400"></iframe>
+
+	<a href="javascript:void(0)" onclick="setPreview()">获取源代码</a>
+
+	<textarea id="htmleditor">
+		<!doctype html>
+		<html lang="en">
+		 <head>
+		  <meta charset="UTF-8">
+		  <meta name="Generator" content="EditPlus®">
+		  <meta name="Author" content="">
+		  <meta name="Keywords" content="">
+		  <meta name="Description" content="">
+		  <title>Document</title>
+		 </head>
+		 <body>
+		 </body>
+		 </html>	
+	</textarea>
+
+	<br />
+
+	<textarea id="csseditor">
+		<style>
+		*{margin:0;padding:0;}	
+		</style>
+		
+	</textarea>
+
+	<br />
+
+	<textarea id="jseditor">
+		<script type="text/javascript">
+		function text(){
+		
+		}
+		</script>
+	</textarea>
+	
+
+ <!---->
+<script src="codemirror.js"></script>
+<!---->
+<link rel="stylesheet" href="codemirror.css">
+<link rel="stylesheet" href="3024-night.css">
+<link rel="stylesheet" href="ambiance.css">
+<!--mode js风格-->
+<script src="javascript.js"></script>
+<script src="css.js"></script>
+<script src="htmlmixed.js"></script>
+<script src="xml.js"></script>
+<script>
+	//html 编辑器初始化地方
+	var editorDom = document.getElementById("htmleditor");
+	var htmlMirror = CodeMirror.fromTextArea(editorDom,{
+		mode:"htmlmixed",
+		lineNumbers:true,
+		theme:"ambiance",
+		tabSize:4	
+	
+	});
+
+	
+
+
+	//css 编辑器初始化地方
+	//var myCodeMirror = CodeMirror(document.body);
+	var editorDom = document.getElementById("csseditor");
+	var cssMirror = CodeMirror.fromTextArea(editorDom,{
+		mode:"css",
+		lineNumbers:true,
+		theme:"3024-night",
+		tabSize:4	
+	
+	});
+	//Js 编辑器初始化地方
+	var editorDom = document.getElementById("jseditor");
+	var jsMirror = CodeMirror.fromTextArea(editorDom,{
+		mode:"javascript",
+		lineNumbers:true,
+		theme:"ambiance",
+		tabSize:4	
+	
+	});
+
+
+	//如何出现行号
+	//如何换皮肤
+	//如何获取编辑器源代码
+
+	function getSource(){
+		//alert(htmlCodeMirror.getValue());
+		
+
+		//htmlCodeMirror.setValue("<p>dddddddd</p>")
+	}
+
+		window.onload = function(){
+		htmlMirror.on("change",function(){
+			setPreview();
+			setEditorData();
+		});	
+
+		cssMirror.on("change",function(){
+			setPreview();
+			setEditorData();
+
+		});	
+		}
+	
+
+
+	function setPreview(){
+		var htmlSource = htmlMirror.getValue();
+		var jsSource = jsMirror.getValue();
+		var cssSource = cssMirror.getValue();
+		var iframe = window.frames["preview"];
+		preview.document.open();
+		preview.document.write(htmlSource);
+		preview.document.write(jsSource);
+		preview.document.write(cssSource);
+		preview.document.close();
+	}
+		function setEditorData(){
+		var htmlSource = htmlMirror.getValue();
+		var jsSource = jsMirror.getValue();
+		var cssSource = cssMirror.getValue();
+		if(window.localStorage){
+			localStorage.setItem("html_editor_data",htmlSource);
+			localStorage.setItem("js_editor_data",jsSource);
+			localStorage.setItem("css_editor_data",cssSource);
+		}
+		}
+
+
+
+</script>
+ </body>
+</html>

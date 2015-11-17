@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <link type="text/css" rel="stylesheet" href="../css/common.css">
+  <link type="text/css" rel="stylesheet" href="../css/blog.css">
+ <body>
+ 		<!--header start-->	
+ 		<header class="header">
+			<div class="h-con">
+				<div class="h-title fl">
+					<h1>
+						<a href="javascript:void(0)" class="logo" >LEE Blog
+							<span class="motto">As much as anyone's effort</span>
+						</a>
+					</h1>
+				</div>
+				<div class="login fr">
+					<a href="index-login.html">登录</a>
+					<span class="l-line">|</span>
+					<a href="index-register.html">注册</a>
+				</div>
+			</div>
+		</header>
+		<!--end header-->
+		<!--nav start-->
+ 		<nav class="nav">
+			<div class="menu">
+				<ul class="m-ul">
+					<li>
+						<a href="../index.html" class="m-sel">Home</a>
+						<span class="line"><span>
+					</li>
+					<li>
+						<a href="index-myself.html">About</a>
+						<span class="line"><span>
+					</li>
+					<li>
+						<a href="index-html5.html">Html5</a>
+						<span class="line"></span>
+					</li>
+					<li>
+						<a href="index-javascript.html">Javascript</a>
+						<span class="line"></span>
+					</li>
+					<li>
+						<a href="index-css3.html">Css3</a>
+						<span class="line"></span>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!--end nav-->
+		<div style="width:200px;margin:50px auto;">
+			<div id="box"></div>
+			<div id="box1"></div>
+		</div>
+		<!--footer start-->
+ 		<footer class="footer">
+			<div class="copyright">
+				Copyright © Welcome to Mr.Lee Learning Space
+				<p>工业和信息化部 版权所有 苏ICP备15048025号</p>
+			</div>
+		</footer>
+		<!--end footer-->
+
+		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				function Cycle(obj){
+					this.id = obj.id;
+					this.width = obj.width;
+					this.height = obj.height;
+					this.border = obj.border;
+					this.precent = obj.percent;
+					this.bgColor = obj.bgColor;
+					this.barColor = obj.barColor;
+					this.textColor = obj.textColor;				
+				}
+
+				Cycle.prototype = {
+					constructor:Cycle,
+					init:function(){
+						var html = "<canvas width='"+this.width+"' height='"+this.height+"' id = 'canvas_"+this.id+"'></canvas>";
+						document.getElementById(this.id).innerHTML = html;
+						this.setOptions();
+					},
+					setOptions:function(){
+						var canvas = document.getElementById("canvas_"+this.id);			
+						var context = canvas.getContext("2d");
+						var w = this.width;
+						var h = this.height;
+						var deg =this.precent;
+						 context.clearRect(0,0,w,h);
+						 context.beginPath();
+						 context.lineWidth = this.border;
+						 context.strokeStyle = this.bgColor;
+						 var cradius = w/2 - this.border;
+						 context.arc(w/2,h/2,cradius,0,2*Math.PI,false);
+						 context.stroke();
+						 var r = deg * 3.6/180*Math.PI; 
+						 context.beginPath();
+						 context.lineWidth = this.border;
+						 context.strokeStyle = this.barColor;
+						 context.arc(w/2,h/2,cradius,0-Math.PI/2,r-Math.PI/2,false);
+						 context.stroke();
+						//绘制文字fillText(str,x,y)
+						 context.beginPath();
+						 context.fillStyle = this.textColor;
+						 context.font ="18px 微软雅黑";
+						 var text = deg+"%";
+						 var textWidth = context.measureText(text).width;
+						 context.fillText(text,w/2-textWidth/2,h/2+9);
+					}
+				}
+				new Cycle({
+					id : "box",
+					border : 30,
+					width : 200,
+					height : 200,
+					percent: 10,
+					bgColor : "red",
+					barColor:"green",
+					textColor : "#fff"
+				}).init();
+				new Cycle({
+					id : "box1",
+					border : 20,
+					width : 200,
+					height : 200,
+					percent: 1,
+					bgColor : "green",
+					barColor:"yellow",
+					textColor : "#fff"
+				}).init();
+					
+				var i=0;
+				var timer = setInterval(function() {
+					 i++;
+					 if(i == 100){
+						clearInterval(timer);
+					 }
+					new Cycle({
+						id : "box1",
+						border : 20,
+						width : 200,
+						height : 200,
+						percent: i,
+						bgColor : "green",
+						barColor:"yellow",
+						textColor : "#fff"
+					}).init();;
+				}, 100);
+			}		
+		</script>
+</body>
+</html>

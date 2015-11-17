@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	*{margin:0;padding:0;}
+	body{background:#56BC8A;}
+	.magnify{width:200px;margin:50px auto;position:relative;}
+	.large{width:175px;height:175px;border-radius:50%;position:absolute;
+		/*多个框阴影实现玻璃的效果*/
+		box-shadow:0 0 0 7px rgba(255, 255, 255, 0.85),0 0 7px 7px rgba(0, 0, 0, 0.25), inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+		/*让我们首先加载大图*/
+		background:url("http://thecodeplayer.com/uploads/media/iphone.jpg") no-repeat;
+		/*默认情况下隐藏的玻璃*/
+		display:none;
+	}
+	.small{display:block;}
+  </style>
+ </head>
+ <body>
+		
+		<div class="magnify">
+			<div class="large"></div>
+			<img class="small" src="http://thecodeplayer.com/uploads/media/iphone.jpg" width="200"/>
+		</div>
+	
+	<script>
+			window.onload = function(){
+				var largeDom = document.getElementsByClassName("large")[0];
+				var imgDom = document.getElementsByClassName("small")[0];
+				var magnifyDom = document.getElementsByClassName("magnify")[0];
+				magnifyDom.onmousemove = function(e){
+					var ev = e || window.event;
+					var mx = ev.clientX - this.offsetLeft;
+					var my = ev.clientY - this.offsetTop;
+					//判断放大镜是否已经和图片接触到了 
+					if(mx < this.clientWidth && my < this.clientHeight && mx > 0 && my > 0){
+						largeDom["style"]["display"] = "block";
+					}else{
+						largeDom["style"]["display"] = "none";
+					}
+					//放大镜的位置
+					var left = mx - largeDom.clientWidth / 2;
+					var top = my - largeDom.clientHeight / 2;
+					//图片的坐标位置的换算
+					var img = new Image();
+					img.src = imgDom.src;
+					var iw = img.width;
+					var ih = img.height;
+					//计算出当前鼠标所在图片的位置的比例
+					var bx = (mx / imgDom.clientWidth*iw - largeDom.clientWidth/2) * -1 +"px";
+					var by = (my / imgDom.clientHeight*ih -largeDom.clientHeight/2)*-1+"px";
+					largeDom.style.left = left +"px";
+					largeDom.style.top = top +"px";
+					largeDom.style.backgroundPosition = bx +" "+by;
+				
+				}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			};
+	</script>
+ </body>
+</html>

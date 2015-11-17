@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="purple">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<style>
+		*{margin:0;padding:0}
+		body{background:#e5e5e5;}
+		.head{height:100px;background:#111;color:#fff;font-size:28px;text-align:center;line-height:100px;}
+		.box{width:200px;height:200px;border:1px solid red;position:relative;}
+		#btn{width:0;height:0;border-left:20px solid transparent;border-bottom:20px solid red;
+			position:absolute;bottom:0;right:0;
+		}
+	</style>
+</head>
+
+<body>
+		<div class="head">窗口拖拽原理</div>
+		<div class="box">
+			<span id="btn"></span>
+		</div>
+
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript">
+		$(function(){
+			var mark = false;
+			$("#btn").mousedown(function(e){
+				var boxw = $(".box")
+				var width = $(".box").width();
+				var height = $(".box").height();
+				var windoww = $(window).width();
+				var windowh = $(window).height();
+				var x = e.clientX;
+				var y = e.clientY;
+				mark = true;
+				$(document).mousemove(function(ev){
+				if(mark){
+					var x1 = ev.clientX;
+					var y1 = ev.clientY;
+					var nw = x1 - x + width;
+					var nh = y1 - y + height;
+					
+					if(nw >= windoww) nw = windoww - 16;
+					if(nh >= windowh) nh = windowh - 16;
+					if(nw < 200) nw = 200;
+					if(nh < 200) nh = 200;
+					boxw.width(nw).height(nh);
+				}
+				
+				}).mouseup(function(){
+				
+					mark = false;
+				});
+
+			});
+					
+		});
+
+</script>
+</body>
+</html>

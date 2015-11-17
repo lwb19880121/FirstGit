@@ -1,0 +1,191 @@
+<!DOCTYPE HTML> 
+<html> 
+<head> 
+<title>模拟flash网格动态变化效果的DHTML特效</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<meta http-equiv="imagetoolbar" content="no"> 
+<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+<style type="text/css"> 
+	html { 
+		overflow: hidden; 
+	} 
+	body { 
+		position: absolute; 
+		margin: 0px; 
+		padding: 0px; 
+		width: 100%; 
+		height: 100%; 
+		background:#000; 
+	} 
+	#screen { 
+		position: absolute; 
+		width: 891px; 
+		height: 550px; 
+		left: 50%; 
+		top: 50%; 
+		margin-left:-445px; 
+		margin-top:-275px; 
+		background: #111; 
+		overflow: hidden; 
+	} 
+	#screen .grid { 
+		position: absolute; 
+		background: #333; 
+		font-size: 0px; 
+		overflow: hidden; 
+	} 
+	#screen .txt { 
+		position: absolute; 
+		font-size: 14px; 
+		color: #fff; 
+		font-family: arial; 
+		overflow: hidden; 
+	} 
+	#screen .menu { 
+		position: absolute; 
+		font-size: 12px; 
+		color: #fff; 
+		font-family: arial; 
+		overflow: hidden; 
+		cursor: pointer; 
+	} 
+	#screen .menubackgroundcolor { 
+		opacity: 0.7; 
+		filter: alpha(opacity=70); 
+	} 
+	#screen .wrapper { 
+		position:absolute; 
+		left: 2%; 
+		top: 2%; 
+		width: 96%; 
+		height: 96%; 
+		overflow: hidden; 
+	} 
+	#screen .wrapper img { 
+		float: left; 
+		margin-right: 6px; 
+		margin-bottom: 0px; 
+	} 
+	#screen h1 { 
+		position:relative; 
+		top: 20px; 
+		width: 100%; 
+		text-align: center; 
+		letter-spacing: 0px; 
+		font-size: 2.5em; 
+	} 
+	#screen .menucontent { 
+		position: absolute; 
+		width: 100%; 
+		text-align: center; 
+		font-size: 128px; 
+		letter-spacing: 0px; 
+		font-weight: bold; 
+		top: -10px; 
+	} 
+	#screen .submenucontent { 
+		position: absolute; 
+		width: 100%; 
+		height: 100%; 
+	} 
+ 
+	#screen .submenutitle { 
+		position: absolute; 
+		top: -12px; 
+		font-size: 64px; 
+		font-weight: bold; 
+	} 
+	#screen .submenu { 
+		position: absolute; 
+		width: 100%; 
+		top: 55px; 
+	} 
+ 
+	#screen .submenuline { 
+		position: relative; 
+		height: 18px; 
+		font-size: 14px; 
+		margin-top: 1px; 
+	} 
+ 
+	#screen .lineover { 
+		background: #fff; 
+		color: #0064a0; 
+		font-weight: bold; 
+	} 
+ 
+	#loader { 
+		position:absolute; 
+		left: 50%; 
+		top: 50%; 
+		width: 50px; 
+		margin-left: -25px; 
+		margin-top: -14px; 
+		text-align: center; 
+		font-family: arial; 
+		font-size: 24px; 
+		font-weight: bold; 
+		color: #fff; 
+		background: #000; 
+		outline: #111 solid 3px; 
+		opacity: 1; 
+		filter: alpha(opacity=60); 
+		z-index: 1000; 
+	} 
+	#htmlBank { 
+		display: none; 
+		visibility: hidden; 
+	} 
+	.footer{position:absolute;left:50%;bottom:10px;width:650px;margin-left:-330px;color:#333;font-size:12px;}
+	.footer a{color:#333;}
+</style> 
+</head> 
+ 
+<body> 
+ 
+<div id="screen">
+	<div id="screen">
+	<img class="fadeimg" src="http://www.5icool.org/demo/2010/00516/images/eve01.jpg" style="position: absolute; visibility: hidden; left: 0px; top: 0px;opacity:0"><div id="loader" style="visibility: hidden;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 0px; top: 0px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 0px; top: 0px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 0px; top: 138px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 0px; top: 138px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="grid" style="top: 137px; width: 891px; height: 1px;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 0px; top: 276px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 0px; top: 276px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="grid" style="top: 275px; width: 891px; height: 1px;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 0px; top: 414px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 0px; top: 414px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="grid" style="top: 413px; width: 891px; height: 1px;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 149px; top: 0px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 149px; top: 0px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="grid" style="left: 148px; width: 1px; height: 550px;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 149px; top: 138px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 149px; top: 138px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 149px; top: 276px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 149px; top: 276px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 149px; top: 414px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 149px; top: 414px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 298px; top: 0px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 298px; top: 0px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="grid" style="left: 297px; width: 1px; height: 550px;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 298px; top: 138px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 298px; top: 138px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 298px; top: 276px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 298px; top: 276px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 298px; top: 414px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 298px; top: 414px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 447px; top: 0px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 447px; top: 0px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="grid" style="left: 446px; width: 1px; height: 550px;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 447px; top: 138px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 447px; top: 138px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 447px; top: 276px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 447px; top: 276px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 447px; top: 414px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 447px; top: 414px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 596px; top: 0px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 596px; top: 0px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="grid" style="left: 595px; width: 1px; height: 550px;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 596px; top: 138px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 596px; top: 138px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 596px; top: 276px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 596px; top: 276px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 596px; top: 414px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 596px; top: 414px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 745px; top: 0px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 745px; top: 0px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="grid" style="left: 744px; width: 1px; height: 550px;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 745px; top: 138px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 745px; top: 138px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 745px; top: 276px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 745px; top: 276px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; opacity: 1; background-color: rgb(0, 0, 0); left: 745px; top: 414px; width: 148px; height: 137px; cursor: default; background-position: initial initial; background-repeat: initial initial;"></div><div class="tmui-items" style="position: absolute; background-color: rgb(255, 255, 255); visibility: hidden; left: 745px; top: 414px; width: 148px; height: 137px; background-position: initial initial; background-repeat: initial initial;"></div><div class="txt" style="visibility: hidden;"></div><div class="txt" style="visibility: hidden; left: 0px; top: 276px; width: 298px; height: 276px;">  </div><div class="txt" style="visibility: hidden; left: 596px; top: 138px; width: 298px; height: 276px;"> 		<div class="wrapper"> 		<img src="http://www.5icool.org/demo/2010/00516/images/graphicID_2684_grey.jpg">Büdolös mutaragran thamar so, ad dobiko gididols utans tak, lit enegenükoms esovob jäfikol-li iv. Län kilas menamödotis tu, dalilomöv osaunikob ukravom ati fa, domi fred da söl. Ifi higok pacödetön vo, ela cödale eperon ofalons lo, bü blinön fasilikum matedafideda bod. 		<br><br><img src="http://www.5icool.org/demo/2010/00516/images/graphicID_2664_grey.jpg"> 		Änu bodeds votiki dö, fanön ritan tedön de oka. Begom dalilomöv stul dag ob. Ko enegenükoms lelifikam maket maf, efe binob esufob lügons ok, löp givoti odunob-li lo. Degolön vinig sus vü, el denu jöniko kohorti köm. Klaatu barada niktó. 		</div> 	</div><div class="txt" style="visibility: hidden; left: 596px; top: 414px; width: 149px; height: 138px;"><h1>büdolös</h1> </div><div class="txt" style="visibility: hidden;"></div><div class="txt" style="visibility: hidden;"></div><div class="menu" style="visibility: hidden; width: 148px; height: 137px; left: 0px; top: 0px;"><div class="menubackgroundcolor" style="position: absolute; width: 148px; height: 137px; background-color: rgb(0, 100, 160);"></div><div class="menucontent" style="visibility: hidden;">1</div></div><div class="menu" style="visibility: hidden; width: 148px; height: 137px; left: 149px; top: 138px;"><div class="menubackgroundcolor" style="position: absolute; width: 148px; height: 137px; background-color: rgb(0, 100, 160);"></div><div class="menucontent" style="visibility: hidden;">2</div><div class="submenucontent" style="visibility: hidden;"><div class="submenutitle">2.dö</div><div class="submenu"><div class="submenuline" style="visibility: hidden;"><div class="tmui-items" style="position: absolute; width: 100%; height: 100%; left: 100%;"></div><div class="tmui-items" style="position: absolute; margin-left: 10px;">klinükols</div></div><div class="submenuline" style="visibility: hidden;"><div class="tmui-items" style="position: absolute; width: 100%; height: 100%; left: 100%;"></div><div class="tmui-items" style="position: absolute; margin-left: 10px;">temakäd</div></div><div class="submenuline" style="visibility: hidden;"><div class="tmui-items" style="position: absolute; width: 100%; height: 100%; left: 100%;"></div><div class="tmui-items" style="position: absolute; margin-left: 10px;">hidünana</div></div><div class="submenuline" style="visibility: hidden;"><div class="tmui-items" style="position: absolute; width: 100%; height: 100%; left: 100%;"></div><div class="tmui-items" style="position: absolute; margin-left: 10px;">osämikebobs</div></div></div></div></div><div class="menu" style="visibility: hidden; width: 148px; height: 137px; left: 0px; top: 414px;"><div class="menubackgroundcolor" style="position: absolute; width: 148px; height: 137px; background-color: rgb(0, 100, 160);"></div><div class="menucontent" style="visibility: hidden;">3</div></div><div class="menu" style="visibility: hidden; width: 148px; height: 137px; left: 745px; top: 414px;"><div class="menubackgroundcolor" style="position: absolute; width: 148px; height: 137px; background-color: rgb(0, 100, 160);"></div><div class="menucontent" style="visibility: hidden;">4</div></div></div>
+
+</div> 
+ <script type="text/javascript">
+	$(function(){
+		$(".menu,.menucontent:eq(0)").css("visibility","visible");
+		$(".menu:gt(0)").hover(function(){
+			$(this).find(".menucontent").css("visibility","visible");
+		},function(){
+			$(this).find(".menucontent").css("visibility","hidden");
+		})
+	
+		var timer = null;
+		var count = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48];
+		var index = 0;
+
+		var shuffle = function(v){ 
+			for(var j, x, i = v.length; i; j = parseInt(Math.random() * i), x = v[--i], v[i] = v[j], v[j] = x); 
+			return v; 
+		}; 
+
+		timer = setInterval(function(){
+			//var n = Math.floor(Math.random() * count.length + 1)-1;  
+			var n = count[index];
+			if(index>=48){	
+				clearInterval(timer);
+				$(".txt").css("visibility","visible").hide().fadeIn("slow");
+			}
+			if(n<25){
+				$(".fadeimg").css("visibility","visible").fadeTo(3000,1);	
+			}
+			$(".tmui-items").eq(n).css("visibility","visible").fadeTo("slow",1,function(){
+				$(this).css("opacity",0);
+
+			});
+			index++;	
+		},10);
+	});
+	</script> 
+
+ </script>
+
+</body>
+</html>

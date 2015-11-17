@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  		<script>
+				/*
+					根据url参数跳转定位到其他位置
+				*/
+				function getQueryString(name) {
+					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+					var r = window.location.search.substr(1).match(reg);
+					if (r != null) return unescape(r[2]); return null;
+				}
+				// alert(getQueryString("type"));
+
+				   //alert("123");
+				var pid = getQueryString("key");
+				//alert(pid)
+				function tabC(tabid, conid, clas, num) {
+					//alert(num);
+					var num = arguments[3] ? arguments[3] : 0;
+					$(tabid).children().eq(num).addClass(clas).siblings().removeClass(clas);  //默认显示第一个选项卡
+					$(conid).children().eq(num).show().siblings().hide();                     //默认显示第一个内容
+				}
+				tabC(".info-nav",".content","info-sel",pid);
+
+		</script>
+ </body>
+</html>

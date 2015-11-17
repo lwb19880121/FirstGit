@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	html{overflow:hidden;}
+	#sky {
+		background:-webkit-linear-gradient(top,#CADCE9 0%,#fff 100%);
+		background:linear-gradient(top,#CADCE9 0%,#fff 100%);
+		padding:100px 0;
+	}
+	.clound {
+		width:200px;
+		height:60px;
+		background:#fff;
+		border-radius:200px;
+		position:relative;
+	}
+	.clound:before,.clound:after {
+		content:"";
+		width:100px;
+		height:80px;
+		background:#fff;
+		border-radius:100px;
+		position:absolute;
+		top:-15px;
+		left:10px;
+		transform:rotate(30deg)}
+	.clound:before {
+		width:120px;
+		height:120px;
+		border-radius:120px;
+		top:-55px;
+		right:15px;
+		left:auto;
+	}
+	@-webkit-keyframes moveclouds {
+		0% {
+		margin-left:1000px;
+	}
+	100% {
+		margin-left:-1000px;
+	}
+	}
+	@keyframes moveclouds {
+		0% {
+		margin-left:1000px;
+	}
+	100% {
+		margin-left:-1000px;
+	}
+	}
+	.s1 {
+		-webkit-animation:moveclouds 15s infinite ease;
+		animation:moveclouds 15s infinite ease;
+	}
+	.s2 {
+		left:200px;
+		-webkit-animation:moveclouds 18s infinite ease;
+		animation:moveclouds 18s infinite ease;
+		transform:scale(0.6);
+		opacity:0.6}
+	.s3 {
+		left:-200px;
+		top:-200px;
+		-webkit-animation:moveclouds 20s infinite ease;
+		animation:moveclouds 20s infinite ease;
+		transform:scale(0.7);
+		opacity:0.7}
+	.s4 {
+		left:-300px;
+		top:-200px;
+		-webkit-animation:moveclouds 25s infinite ease;
+		animation:moveclouds 25s infinite ease;
+		transform:scale(0.8);
+		opacity:0.8}
+	.s5 {
+		left:-400px;
+		top:-100px;
+		-webkit-animation:moveclouds 28s infinite ease;
+		animation:moveclouds 25s infinite ease;
+		transform:scale(0.9);
+		opacity:0.9}
+  </style>
+ </head>
+ <link type="text/css" rel="stylesheet" href="../css/common.css">
+  <link type="text/css" rel="stylesheet" href="../css/blog.css">
+ <body>
+ 		<!--header start-->	
+ 		<header class="header">
+			<div class="h-con">
+				<div class="h-title fl">
+					<h1>
+						<a href="javascript:void(0)" class="logo" >LEE Blog
+							<span class="motto">As much as anyone's effort</span>
+						</a>
+					</h1>
+				</div>
+				<div class="login fr">
+					<a href="index-login.html">登录</a>
+					<span class="l-line">|</span>
+					<a href="index-register.html">注册</a>
+				</div>
+			</div>
+		</header>
+		<!--end header-->
+		<!--nav start-->
+ 		<nav class="nav">
+			<div class="menu">
+				<ul class="m-ul">
+					<li>
+						<a href="../index.html" class="m-sel">Home</a>
+						<span class="line"><span>
+					</li>
+					<li>
+						<a href="index-myself.html">About</a>
+						<span class="line"><span>
+					</li>
+					<li>
+						<a href="index-html5.html">Html5</a>
+						<span class="line"></span>
+					</li>
+					<li>
+						<a href="index-javascript.html">Javascript</a>
+						<span class="line"></span>
+					</li>
+					<li>
+						<a href="index-css3.html">Css3</a>
+						<span class="line"></span>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!--end nav-->
+		<div style="color:#fff;margin:20px auto;text-align:center; ">如您的浏览器不支持CSS3环境，请到谷歌浏览器下浏览！</div>
+		<div id="sky">
+			<div class="clound s1"></div>
+			<div class="clound s2"></div>
+			<div class="clound s3"></div>
+			<div class="clound s4"></div>
+			<div class="clound s5"></div>
+		</div>
+		<!--footer start-->
+		<!--end footer-->
+		<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>	
+
+</body>
+</html>
