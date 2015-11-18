@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS3实现折角效果</title>
+    <style media="screen">
+        body{
+            background: #fff;
+        }
+        .wrapper{
+        margin:0 auto;
+        width:500px;
+        height:300px;
+        background-color: #36b11d;
+        border-radius: 10px;
+        /*父包含块*/
+        position: relative;
+        }
+        .wrapper:before{
+            /*设置折角实现的位置;*/
+            position: absolute;
+            left:0;
+            bottom: 0;
+            width:0;
+            content:"";
+            display: block;
+            border: 30px solid #7201aa;
+            border-color:rgba(0, 255, 0, 0.5) rgba(0, 220, 0, 0.5) transparent transparent;
+            background-color: #fff; //设置为透明的话,会显示绿底;
+            /*设置元素的阴影效果*/
+            box-shadow:1px -2px 1px rgba(0, 0, 0, 0.5) ;
+        }
+        .wrapper:after{
+            //设置折角实现的位置;
+            position: absolute;
+            right:0;
+            bottom: 0;
+            width:0;
+            content:"";
+            display: block;
+            /*通过调整大小来控制折角的大小*/
+            border: 60px solid #7201aa;
+            border-color:rgba(0, 255, 0, 0.2) transparent transparent rgba(0, 220, 0, 0.2) ;
+            background-color: #fff; //设置为透明的话,会显示绿底;
+            /*设置元素的阴影效果*/
+            box-shadow:-2px -3px 1px rgba(0, 0, 0, 0.5) ;
+        }
+        /*名字定位*/
+        .wrapper>a{
+            display: block;
+            width:50px;
+            line-height: 50px;
+            text-align: center;
+            font-size:15px;
+            color:#2b2b2b;
+            text-decoration: none;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5); inset ;
+            -webkit-transform: rotate(-45deg); inset ;
+                -ms-transform: rotate(-45deg); inset ;
+                    transform: rotate(-45deg);
+            position: absolute;
+            right:70px;
+            bottom: 50px;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+    </div>
+</body>
+</html>
