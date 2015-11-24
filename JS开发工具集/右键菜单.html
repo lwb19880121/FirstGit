@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	* {margin:0; padding:0;}
+	li {list-style:none; padding:2px;}
+	#ul {width:50px; border:1px solid black; position:absolute; display:none;}
+  </style>
+ </head>
+ <body>
+		<ul id="ul">
+			<li>1111</li>
+			<li>2222</li>
+			<li>3333</li>
+			<li>4444</li>
+		</ul>
+
+		<script>
+			document.oncontextmenu = function(ev){
+				var oEv  =  ev || event;
+				var uldom = document.getElementById('ul');
+				uldom.style.display = 'block';
+				uldom.style.left = oEv.clientX + "px";
+				uldom.style.top = oEv.clientY + "px";
+				return false;
+			}
+		</script>
+ </body>
+</html>

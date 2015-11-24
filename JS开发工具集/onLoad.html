@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  
+
+		<script>
+			function addLoadEvent(func){
+				var oldonload = window.onload;
+				if(typeof window.onload != 'function'){
+					window.onload = func;
+				}else{
+					window.onload = function(){
+						oldonload();
+						func();
+					}
+				}
+			}
+		
+		</script>
+ </body>
+</html>

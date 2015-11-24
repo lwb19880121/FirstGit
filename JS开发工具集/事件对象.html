@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+  #div1 {width:100px; height:100px; background:red; position:absolute;}
+  </style>
+ </head>
+ <body>
+		  <div id="div1"></div>
+
+		  <script>
+			document.onmousemove = function(ev){
+				var oEv = ev || event;
+				var oDiv = document.getElementById('div1');
+
+				oDiv.style.left = oEv.clientX + "px";
+				oDiv.style.top = oEv.clientY + "px";
+			}
+		  </script>
+ </body>
+</html>

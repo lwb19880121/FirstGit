@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+	<input id="btn1" type="button" value="aaa" />
+	<script>
+		function aaa(){
+			alert('a');
+		}
+		function bbb(){
+			alert('b');
+		}
+		
+		window.onload = function(){
+
+			var oBtn=document.getElementById('btn1');
+				/*
+					oBtn.onclick=aaa;
+					oBtn.onclick=bbb;
+					这样事件覆盖掉了
+				*/
+	
+				//IE	attachEvent(事件名, 函数)
+				/*oBtn.attachEvent('onclick', aaa);
+				oBtn.attachEvent('onclick', bbb);*/
+				
+				//FF	addEventListener(事件名, 函数, 是否捕获 false)
+				/*oBtn.addEventListener('click', aaa, false);
+				oBtn.addEventListener('click', bbb, false);*/
+				
+				if(oBtn.attachEvent){
+					oBtn.attachEvent('onclick',aaa);
+					oBtn.attachEvent('onclick',bbb);
+				}else{
+					oBtn.addEventListener('click',aaa,false);
+					oBtn.addEventListener('click',bbb,false);
+				}
+				
+		}
+	</script>
+ </body>
+</html>
