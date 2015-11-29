@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+	<style type="text/css">
+		#img{opacity:0.3;filter:alpha(opacity:30);}
+	</style>
+ </head>
+ <body>
+	<img src='bg.jpg' width='600' id='img'/>
+	<script>
+		var timer = null;
+		var alpha = 30;
+		window.onload = function(){
+			var oImg = document.getElementById('img');
+			oImg.onmouseover = function(){
+				startMove(100);
+			}
+			oImg.onmouseout = function(){
+				startMove(30);
+			}
+		}
+		function startMove(target){
+			var oImg = document.getElementById('img');
+			clearInterval(timer);
+			var speed = 0;
+			timer = setInterval(function(){
+				if(alpha < target){
+					speed = 5;
+				}else{
+					speed = -5;
+				}
+				if(alpha == target){
+					clearInterval(timer);
+				}else{
+					alpha += speed;
+					oImg.style.filter = 'alpha(opacity:'+alpha+')';
+					oImg.style.opacity = alpha/100;
+					document.title = alpha;
+				}
+			},30)
+		}
+	</script>
+ </body>
+</html>

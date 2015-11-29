@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style type="text/css">
+	#div{width:100px;height:100px;background:red;position:absolute;left:500px;}
+	span{width:1px;height:200px;background:#111;position:absolute;left:300px;}
+  </style>
+ </head>
+ <body>
+	<input type="button"  value='匀速运送' onclick='startMove(300)'/>
+	<div id='div'></div>
+	<span></span>
+	<script type="text/javascript">
+		var timer = null;
+
+		function startMove(target){
+			var oDiv = document.getElementById('div');
+			clearInterval(timer);
+			timer = setInterval(function(){
+				var  speed = 0;
+				if(oDiv.offsetLeft < target){
+					speed = 7;
+				}else{
+					speed = -7;
+				}
+
+				if(Math.abs(oDiv.offsetLeft - target) < 7){
+					clearInterval(timer);
+					oDiv.style.left = target + 'px';
+				}else{
+					oDiv.style.left = oDiv.offsetLeft + speed + "px";
+				}
+			},30)
+		}
+	</script>
+ </body>
+</html>
