@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> New Document </title>
+  <meta charset="utf-8">
+	<style>
+		ul,h2 {margin: 0; padding: 0;}
+		li {list-style: none;}
+		#nav {border: 1px solid #333; float: left; padding: 5px 0; background: #ccf;}
+		#nav ul {padding-left: 20px; display: none;}
+		#nav h2 {font-size: 16px; height: 25px; line-height: 25px; padding: 0 15px;}
+	</style>
+
+    <script>
+		window.onload = function(){
+			var oNav = document.getElementById('nav');
+			var oLi = oNav.getElementsByTagName('li');
+			var oH2 = oNav.getElementsByTagName('h2');
+
+			for(var i=0;i<oLi.length;i++){
+				oLi[i].onclick = function(ev){
+					var oEv = ev || event;
+					var oSpan = this.getElementsByTagName('span')[0];
+					var oUl = this.getElementsByTagName('ul')[0];
+					var aSpan = this.parentNode.getElementsByTagName('span');
+					var aUl = this.parentNode.getElementsByTagName('ul');
+					console.log(aSpan);
+					console.log(aUl);
+					for(var i=0;i<aUl.length;i++){
+						if(aUl[i] == oUl) continue;
+						aUl[i].style.display = 'none';
+						aSpan[i].innerHTML = '+';
+					}
+					if(oUl){
+						oUl.style.display = oUl.style.display == 'block'?'none':'block';
+						oSpan.innerHTML = oSpan.innerHTML == '-'?'+':'-'; 
+					}
+					oEv.cancelBubble=true;
+				}
+
+				oH2[i].onmouseover = function(){
+					this.style.color = 'red';
+				}
+				oH2[i].onmouseout = function(){
+					this.style.color = '';
+				}
+			}
+		}
+    </script>
+</head>
+
+<body>
+			<ul id="nav">
+                <li class="list1"><h2><span>+</span> 第一级菜单 </h2>
+					<ul>
+						<li>
+							<h2><span>+</span> 第二级菜单 </h2>
+							<ul>
+								<li class="list1"><h2><span>+</span> 第三级菜单 </h2>
+									<ul>
+										<li class="list1"><h2> 第四级菜单 </h2></li>
+										<li class="list1"><h2> 第四级菜单 </h2></li>
+										<li class="list1"><h2> 第四级菜单 </h2></li>
+										<li class="list1"><h2> 第四级菜单 </h2></li>
+									</ul>
+								</li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+							</ul>
+						</li>
+						<li><h2><span>+</span> 第二级菜单 </h2>
+								<ul>
+										<li class="list1"><h2> 第三级菜单 </h2></li>
+										<li class="list1"><h2> 第三级菜单 </h2></li>
+										<li class="list1"><h2> 第三级菜单 </h2></li>
+										<li class="list1"><h2> 第三级菜单 </h2></li>
+								</ul>
+						</li>
+						<li><h2> 第二级菜单 </h2></li>
+						<li><h2> 第二级菜单 </h2></li>
+					</ul>
+                </li>
+                <li class="list1"><h2><span>+</span> 第一级菜单 </h2>
+					<ul>
+						<li><h2><span>+</span> 第二级菜单 </h2>
+							<ul>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+							</ul>
+						</li>
+						<li><h2><span>+</span> 第二级菜单 </h2>
+							<ul>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+							</ul>
+						</li>
+						<li><h2> 第二级菜单 </h2></li>
+						<li><h2> 第二级菜单 </h2></li>
+					</ul>
+                </li>
+                <li class="list1"><h2><span>+</span> 第一级菜单 </h2>
+					<ul>
+						<li><h2><span>+</span> 第二级菜单 </h2>
+							<ul>
+								<li class="list1"><h2><span>+</span> 第三级菜单 </h2>
+										<ul>
+												<li class="list1"><h2> 第四级菜单 </h2></li>
+												<li class="list1"><h2> 第四级菜单 </h2></li>
+												<li class="list1"><h2> 第四级菜单 </h2></li>
+												<li class="list1"><h2> 第四级菜单 </h2></li>
+										</ul>
+								</li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+							</ul>
+						</li>
+						<li><h2><span>+</span> 第二级菜单 </h2>
+							<ul>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+							</ul>
+						</li>
+						<li><h2> 第二级菜单 </h2></li>
+						<li><h2> 第二级菜单 </h2></li>
+					</ul>
+                </li>
+                <li class="list1"><h2><span>+</span> 第一级菜单 </h2>
+					<ul>
+						<li><h2><span>+</span> 第二级菜单 </h2>
+							<ul>
+								<li class="list1"><h2><span>+</span> 第三级菜单 </h2>
+									<ul>
+										<li class="list1"><h2> 第四级菜单 </h2></li>
+										<li class="list1"><h2> 第四级菜单 </h2></li>
+										<li class="list1"><h2> 第四级菜单 </h2></li>
+										<li class="list1"><h2> 第四级菜单 </h2></li>
+									</ul>
+								</li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+							</ul>
+						</li>
+						<li><h2><span>+</span> 第二级菜单 </h2>
+							<ul>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+								<li class="list1"><h2> 第三级菜单 </h2></li>
+							</ul>
+						</li>
+						<li><h2> 第二级菜单 </h2></li>
+						<li><h2> 第二级菜单 </h2></li>
+					</ul>
+                </li>
+			</ul>
+</body>
+</html>

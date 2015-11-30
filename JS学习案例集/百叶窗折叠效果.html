@@ -1,0 +1,179 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<style>
+*{margin:0; padding:0}
+	li{list-style:none;}
+	#ul1,#ul2{width:400px; margin:20px; float:left; border:1px #000 solid}
+	li{width:100%; height:30px; overflow:hidden; position:relative; line-height:30px; border-bottom:1px #000 dashed}
+	div{position:absolute; top:0; left:0;}
+</style>
+
+<script>
+	function toShow(obj){
+		var ul = document.getElementById(obj);
+		var oDiv = ul.getElementsByTagName('div');
+		var timer = null;
+		var iNow = 0;
+		var bDom = true;
+		setInterval(function(){
+			toChange();
+		},4000)
+		function toChange(){
+			timer = setInterval(function(){
+				if(iNow == oDiv.length){
+					clearInterval(timer);
+					iNow = 0;
+					bDom = !bDom;
+				}else{
+					if(bDom){
+						startMove(oDiv[iNow],{top:-30})
+						iNow++
+					}else{
+						startMove(oDiv[iNow],{top:0})
+						iNow++
+					}	
+				}
+			},100)
+		}
+	}
+	window.onload = function(){
+		toShow('ul1');
+		setTimeout(function(){toShow('ul2');},2000)
+	}
+	function getStyle(obj,attr){
+		if(obj.currentStyle){
+			return obj.currentStyle[attr];
+		}else{
+			return getComputedStyle(obj,false)[attr];
+		}
+	}
+	function startMove(obj,json,fn){
+		clearInterval(obj.timer);
+		obj.timer = setInterval(function(){
+			var bStop = true;
+			for(attr in json){
+				//1.取当前的值
+				if(attr == 'opacity'){
+					var iCur = parseInt(parseFloat(getStyle(ojb,attr))*100);
+				}else{
+					var iCur = parseInt(getStyle(obj,attr));
+				}
+				//2.算速度
+				var speed = (json[attr] - iCur) / 8;
+				speed = speed>0?Math.ceil(speed):Math.floor(speed);
+				//3.检查停止与否
+				if(iCur != json[attr]){
+					bStop = false;
+				}
+				if(attr == 'opacity'){
+					obj.style.filter = 'alpha(opacity='+(iCur+speed)+')'
+					obj.style.opacity = (iCur+speed) / 100;
+				}else{
+					obj.style[attr] = iCur + speed + 'px';
+				}
+				
+			}
+			if(bStop){
+				clearInterval(obj.timer);
+				if(fn){
+					fn();
+				}
+			}
+		},30)
+	}
+</script>
+<body>
+<ul id="ul1">
+        <li>
+            <div>
+                <p>111111111111111111111111111</p>
+                <p>222222222222222222222222222</p>
+        </div>
+    </li>
+    <li>
+            <div>
+                <p>333333333333333333333333333</p>
+                <p>444444444444444444444444444</p>
+        </div>
+    </li>
+    <li>
+            <div>
+                <p>555555555555555555555555555</p>
+                <p>666666666666666666666666666</p>
+        </div>
+    </li>
+    <li>
+            <div>
+                <p>777777777777777777777777777</p>
+                <p>888888888888888888888888888</p>
+        </div>
+    </li>
+    <li>
+            <div>
+                <p>999999999999999999999999999</p>
+                <p>000000000000000000000000000</p>
+        </div>
+    </li>
+    <li>
+            <div>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>bbbbbbbbbbbbbbbbbbbbbbbbbbb</p>
+        </div>
+    </li>
+    <li>
+            <div>
+                <p>ccccccccccccccccccccccccccc</p>
+                <p>ddddddddddddddddddddddddddd</p>
+        </div>
+    </li>
+
+</ul><ul id="ul2">
+        <li>
+            <div>
+                <p>11111111111111111111111111</p>
+                <p>22222222222222222222222222</p>
+        </div>
+    </li>
+    <li>
+            <div>
+                <p>333333333333333333333333333</p>
+                <p>444444444444444444444444444</p>
+        </div>
+    </li>
+    <li>
+            <div>
+                <p>555555555555555555555555555</p>
+                <p>666666666666666666666666666</p>
+        </div>
+    </li>
+    <li>
+            <div>
+                <p>777777777777777777777777777</p>
+                <p>888888888888888888888888888</p>
+        </div>
+    </li>
+    <li>
+            <div>
+                <p>999999999999999999999999999</p>
+                <p>000000000000000000000000000</p>
+        </div>
+    </li>
+    <li>
+            <div>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>bbbbbbbbbbbbbbbbbbbbbbbbbbb</p>
+        </div>
+    </li>
+    <li>
+            <div>
+                <p>ccccccccccccccccccccccccccc</p>
+                <p>ddddddddddddddddddddddddddd</p>
+        </div>
+    </li>
+
+</ul>
+</body>
+</html>
