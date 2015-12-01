@@ -83,6 +83,7 @@
 			function startMove(obj,attr,target){
 				clearInterval(obj.timer);
 				obj.timer = setInterval(function(){
+					var iCur = 0;
 					if(attr == 'opacity'){
 						var iCur = parseInt(parseFloat(getStyle(obj,attr))*100);
 					}else{
@@ -95,9 +96,8 @@
 						clearInterval(obj.timer);
 					}else{
 						if(attr == 'opacity'){
-							iCur += speed;
-							obj.style.filter = 'alpha(opacity:'+iCur+')';
-							obj.style.opacity = iCur / 100;
+							obj.style.filter = 'alpha(opacity:'+(iCur+speed)+')';
+							obj.style.opacity = (iCur+speed) / 100;
 						}else{
 							obj.style[attr] = iCur + speed + 'px';
 						}
